@@ -11,29 +11,28 @@ import it.kiocode.il2cppandroidcheats.components.Menu;
 import it.kiocode.il2cppandroidcheats.components.Slider;
 
 public class Main {
-//    protected static Context context;
 
     public static native void ChangesInt(int feature, int value);
     public static native void ChangesBool(int feature, boolean value);
     public static native String[] getFeatures();
 
-    public static void start(final Context context) {
+//    public static void start(final Context context) {
 //        Main.context = context;
-//        if (context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
-//                || context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+//        if (context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED || context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
 //            ((Activity) context).requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
 //            init(context);
 //        } else {
-            init(context);
+//            init(context);
 //        }
-    }
+//    }
 
     public static void init(final Context context) {
-//        Handler handler = new Handler();
-//        handler.postDelayed(() -> {
-//            System.loadLibrary("kiocode");
-//
-//            try {
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+
+            try {
+                System.loadLibrary("kiocode");
+
                 final Menu menu = new Menu(context);
 
                 // Create the GUI based on CPP strings code
@@ -60,7 +59,7 @@ public class Main {
                             int current = Integer.parseInt(args[5]);
 
                             Slider slider = new Slider(context, text, max, current);
-                            slider.setCallback(cvalue -> ChangesInt(id, cvalue));
+                            slider.setCallback(value -> ChangesInt(id, value));
                             menu.__pages.get(page).addView(slider);
                             break;
                         case "switch":
@@ -75,10 +74,10 @@ public class Main {
                             break;
                     }
                 }
-//            } catch (Exception e) {
-//                Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
-//            }
-//        }, 3000);
+            } catch (Exception e) {
+                Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+            }
+        }, 40000);
     }
 
 }

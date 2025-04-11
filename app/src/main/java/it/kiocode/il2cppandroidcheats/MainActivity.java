@@ -19,7 +19,8 @@ public class MainActivity extends Activity implements KeyEvent.Callback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Main.start(this);
+        Toast.makeText(MainActivity.this,"KioCode Cheat [OnCreate]",Toast.LENGTH_SHORT).show();
+        Main.init(this);
         LinearLayout lt = new LinearLayout(this);
         lt.setBackgroundColor(Color.parseColor("#FD7600"));
         setContentView(lt);
